@@ -1,4 +1,4 @@
-import Elementos from "/Elementos.js" 
+import Elementos from "./Elementos.js" 
 
 export default class TipoInput extends Elementos{
 
