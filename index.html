@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <link rel="stylesheet" href="https://ux.ed.team/css/styles.css?201803301710">
+
+</head>
+
+<body>
+    <div class="ed-grid">
+        <h1>Aprendiendo HTML5</h1>
+
+        <form id="formulario" method="post">
+            <div class="ed-grid m-grid-4">
+                <label>
+                    Tipo de elemento
+                    <select name="opciones" id="opciones">
+                        <option value="Seleccione" name="Seleccione">Seleccione</option>
+                        <option value="h1" name="h1">h1</option>
+                        <option value="h2" name="h2">h2</option>
+                        <option value="h3" name="h3">h3</option>
+                        <option value="p" name="p">p</option>
+                        <option value="span" name="span">span</option>
+                        <option value="img" name="img">img</option>
+                        <option value="input text" name="input text">input text</option>
+                        <option value="input password" name="input password">input password</option>
+                        <option value="input number" name="input number">input number</option>
+                        <option value="a" name="">a</option>
+                    </select>
+                </label>
+                <label>
+                    Texto
+                    <input required id="text" name="text" type="text">
+                </label>
+                <label>
+                    id
+                    <input required id="id" name="id" type="text">
+                </label>
+                <input required class="button" type="submit" id="btn" name="btn" value="Agregar">
+
+            </div>
+        </form>
+
+    </div>
+    <script type="module" src="index.js"></script>
+
+</body>
+
+</html>
