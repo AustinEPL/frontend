@@ -1,5 +1,5 @@
-import Elementos from "/Elementos.js"
-import TipoInput from "/TipoInput.js"
+import Elementos from "./Elementos.js"
+import TipoInput from "./TipoInput.js"
 
 
 let elementos = []
