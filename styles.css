@@ -1,0 +1,29 @@
+.elementosCreados{
+    width: 80%;
+    align-self: center;
+}
+
+input:not([type="submit"]) {
+    /* Estilos para todos los inputs excepto los de tipo submit */
+    padding: 10px;
+    border: 1px solid #26c8d4;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+img{
+    display: block;
+ margin: 10px auto;
+height: 200px;
+ 
+}
+label{
+    font-size: 1.1em;
+}
+
+span,strong,a{
+    display: block;
+}
+a:hover{
+    cursor: pointer;
+}

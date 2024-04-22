@@ -1,8 +1,56 @@
 import Elementos from "./Elementos.js"
 import TipoInput from "./TipoInput.js"
+import Imagen from "./Imagen.js"
+import A from "./A.js"
+
+
 
 
 let elementos = []
+
+
+let opciones = document.getElementById("opciones")
+opciones.addEventListener("change", e => {
+    let target = e.target
+    let input = target.value.split(" ")
+    var inp = document.getElementById("lblTexto").querySelector("input");
+    let inputID= document.getElementById("lblId").querySelector("input")
+
+    console.log(input[0])
+    //if(input=="")
+
+    if (input[0] == "input") {
+        document.getElementById("lblTexto").textContent = "Placeholder"
+        document.getElementById("lblId").textContent = "Id"
+
+    } else if (input[0] == "img") {
+        document.getElementById("lblTexto").textContent = "Ruta"
+        document.getElementById("lblId").textContent = "Id"
+
+    } else if(input[0] == "a"){
+        document.getElementById("lblId").textContent = "enlace"
+       // document.getElementById("lblId").textContent = "Id"
+
+       
+       // document.getElementById("lblId").appendChild(inputID)
+
+
+    }
+    else {
+        document.getElementById("lblTexto").textContent = "Texto"
+        document.getElementById("lblId").textContent = "Id"
+
+       
+
+
+    }
+    
+
+    document.getElementById("lblTexto").appendChild(inp);
+    document.getElementById("lblId").appendChild(inputID)
+
+
+})
 
 let form = document.getElementById("formulario")
 form.addEventListener("submit", e => {
@@ -18,74 +66,105 @@ form.addEventListener("submit", e => {
         switch (input[1]) {
             case "text":
                 añadirElementoInput(new TipoInput(input[0], target.text.value, target.id.value, input[1]))
-               console.log("text")
+                limpiarCampos()
+
                 break
             case "number":
                 añadirElementoInput(new TipoInput(input[0], target.text.value, target.id.value, input[1]))
-               console.log("number")
-                
+                limpiarCampos()
+
                 break;
             case "password":
                 añadirElementoInput(new TipoInput(input[0], target.text.value, target.id.value, input[1]))
-                console.log("pass")
-            
-                break
+                limpiarCampos()
+                break;
+
 
         }
-    } else {
+    } else if (target.opciones.value == "Seleccione") {
+        alert("Seleccione un elemento html")
+        limpiarCampos()
+        return
+
+    } else if (target.opciones.value == "img") {
+        añadirElementoimg(new Imagen(target.opciones.value, "", target.id.value, target.text.value))
+        limpiarCampos()
+    }else if(target.opciones.value == "a"){
+        añadirElementoA(new A(target.opciones.value,target.text.value,"", target.id.value ))
+        limpiarCampos()
+    }
+    else {
         AñadirElementoBase(new Elementos(target.opciones.value, target.text.value, target.id.value))
-    }
-
-    function AñadirElementoBase(Elemento) {
-        let n = Elemento
-
-        let hijo = document.createElement(n.tag)
-        hijo.appendChild(document.createTextNode(n.text))
-        document.body.appendChild(hijo)
+        limpiarCampos()
 
     }
 
-    function añadirElementoInput(Input) {
-        let inp = Input
-        let hijo = document.createElement(inp.tag)
-        hijo.setAttribute("type", inp.tipo)
-        hijo.setAttribute("value", inp.text)
-
-        //hijo.appendChild(document.createTextNode(inp.text))
-        document.body.appendChild(hijo)
-
-    }
-
-
-    /*
-        let n = new Elementos(target.opciones.value, target.text.value)
-    
-        let tI = new TipoInput()
-    
-        let hijo = document.createElement(n.tag)
-        hijo.appendChild(document.createTextNode(n.text))
-        document.body.appendChild(hijo)
-    
-        target.text.value = ""
-    
-    */
-
+  
 
 
 
 
 })
 
+function AñadirElementoBase(Elemento) {
+    let box = document.getElementById("elementosCreados")
+
+    let n = Elemento
+    let hijo = document.createElement(n.tag)
+    hijo.appendChild(document.createTextNode(n.text))
+    // document.body.appendChild(hijo)
+    box.appendChild(hijo)
 
 
-function nuevo() {
-    let nuevo = document.getElementById("tipo").value
-    let texto = document.getElementById("text").value
-    let nNodo = document.createElement(nuevo)
+}
 
-    let nodoTexto = document.createTextNode(texto)
+function añadirElementoInput(Input) {
+    let box = document.getElementById("elementosCreados")
+
+    let inp = Input
+    let hijo = document.createElement(inp.tag)
+    hijo.setAttribute("type", inp.tipo)
+    hijo.setAttribute("placeholder", inp.text)
+
+    // document.body.appendChild(hijo)
+    box.appendChild(hijo)
+
+}
+
+function añadirElementoimg(Imagen) {
+    let box = document.getElementById("elementosCreados")
+
+    let inp = Imagen
+    let hijo = document.createElement(inp.tag)
+    hijo.setAttribute("src", inp.ruta)
+    hijo.setAttribute("alt", inp.text)
+
+    //hijo.appendChild(document.createTextNode(inp.text))
+    // document.body.appendChild(hijo)
+    box.appendChild(hijo)
+
+}
+function añadirElementoA(A) {
+    let box = document.getElementById("elementosCreados")
+
+    let inp = A
+    let hijo = document.createElement(inp.tag)
+    hijo.setAttribute("href", inp.src)
+    hijo.setAttribute("target", "_blank")
+
+    hijo.appendChild(document.createTextNode(inp.text))
 
 
-    nNodo.appendChild(nodoTexto)
-    document.body.appendChild(nNodo)
+    //hijo.appendChild(document.createTextNode(inp.text))
+    // document.body.appendChild(hijo)
+    box.appendChild(hijo)
+
+}
+
+
+function limpiarCampos() {
+    document.getElementById("text").value = ""
+    document.getElementById("id").value = ""
+
+
 }
